@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+      <%@ taglib uri="/struts-tags" prefix="s" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>图书检索</title>
+</head>
+<body>
+<p>检索条件</p>
+<form action="filterBook" method="post">
+<s:textfield name="book.bookName" label="书名"/><br>
+<s:textfield name="book.author" label="作者"/><br>
+<s:select list="classMap" name="book.classificationId" label="请选择分类"></s:select><br>
+<s:select list="publisherMap" name="book.publisherId" label="请选择出版社"></s:select><br>
+<s:radio list="#{'true':'是','false':'否'}" listKey="key" listValue="value" name="liked" label="是否选择模糊查询">
+</s:radio>
+<s:submit value="检索"></s:submit>
+</form>
+
+<p>图书列表</p>
+<table style="border:1px solid green">
+
+<tr><td>图书名<td>作者<td>出版日期<td>价格<td>所属分类<td>出版社</tr>
+<s:iterator value="books" var="book">
+<tr><td><s:property value="#book.bookName"/>
+<td><s:property value="#book.author"/>
+<td><s:property value="#book.publisherDate"/>
+<td><s:property value="#book.price"/>
+<td><s:property value="#book.publisherName"/>
+<td><s:property value="#book.classification"/>
+<td><s:url var="addFaver" action="addFaver">
+         <s:param name="book.bookId" value="#book.bookId"/></s:url>
+      <a href="${addFaver}">添加收藏</a>
+      <s:url var="bookDetail" action="bookDetail">
+         <s:param name="book.bookId" value="#book.bookId"/>
+         </s:url>
+      <a href="${bookDetail}">详细信息</a>
+</s:iterator>
+</table>
+</body>
+</html>

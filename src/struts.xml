@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="default" extends="struts-default" namespace="/">
+		<action name="dologin" class="action.DoLogin">
+			<result name="input">/index.jsp</result>
+			<result name="adminLogin">/adminLoginSuc.jsp</result>
+			<result name="userLogin">/userLoginSuc.jsp</result>
+		</action>
+		<action name="doregister" class="action.DoRegister">
+			<result name="input">/register.jsp</result>
+			<result type="redirect">/index.jsp</result>
+		</action>
+		<action name="doAddClassfication" class="action.DoAddClassification">
+			<result name="success">/addClassificationSuc.jsp</result>
+			<result name="fail">/addClassificationFail.jsp</result>
+		</action>
+		<action name="doAddPublisher" class="action.AddPublisher">
+			<result name="success">/addPublisherSuc.jsp</result>
+			<result name="fail">/addPublisherFail.jsp</result>
+		</action>
+		<action name="PublisherList" class="action.PublisherList">
+			<result name="success">/publisherList.jsp</result>
+		</action>
+		<action name="editPublisher" class="action.EditPublisher">
+			<result name="success">/editPublisher.jsp</result>
+		</action>
+		<action name="updatePublisher" class="action.EditPublisher"
+			method="update">
+			<result type="redirect">PublisherList</result>
+		</action>
+		<action name="delPublisher" class="action.EditPublisher"
+			method="delete">
+			<result type="redirect">PublisherList</result>
+		</action>
+		<action name="dologout" class="action.Logout">
+			<result type="redirect">/index.jsp</result>
+		</action>
+		<action name="ClassificationList" class="action.ClassificationList">
+			<result name="success">/classificationList.jsp</result>
+		</action>
+		<action name="addBookPage" class="action.AddBookPage">
+		<result>/addBook.jsp</result>
+		</action>
+		<action name="doAddBook" class="action.AddBook">
+		<result type="redirect">bookList</result>
+		</action>
+		 <action name="bookList" class="action.BookList">
+		<result name="success">/bookList.jsp</result>
+		</action>
+		<action name="combination" class="action.GetFilterPage">
+		<result name="success">/filterBook.jsp</result>
+		</action>
+		<action name="filterBook" class="action.FilterBook">
+		<result name="success">/filterResult.jsp</result>
+		</action>
+		<action name="addFaver" class="action.AddFaver">
+		<result type="redirect">faverList</result>
+		</action>
+		<action name="faverList" class="action.FaverList">
+		<result name="success">/faverList.jsp</result>
+		</action>
+		<action name="cancelFaver" class="action.CancelFaver">
+		<result type="redirectAction">faverList</result>
+		</action>
+		<action name="bookDetail" class="action.BookDetail">
+		<result name="success">/DetailInfo.jsp</result>
+		</action>
+		<action name="addComment" class="action.AddComment">
+		<result name="input">/addCommentFail.jsp</result>
+		<result type="chain">bookDetail</result>
+		</action>
+	</package>
+</struts>
